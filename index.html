@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jessica Corrales Loría | Business Operations Analyst, Customer Success</title>
+<meta name="description" content="Jessica Corrales Loría, Business Operations Analyst in Customer Success. CS tech stack administration, health scoring, KPI reporting, and platform migration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14203A;
+    --muted:#5B6472;
+    --accent:#256560;
+    --accent-tint:#EAF2F1;
+    --risk:#B6544A;
+    --risk-tint:#F7EAE8;
+    --amber:#B8873E;
+    --line:#E3E6EA;
+    --bg:#FFFFFF;
+    --bg-soft:#F7F8FA;
+    --radius:10px;
+    --max:1000px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Newsreader', Georgia, serif;
+    font-weight:500;
+    line-height:1.15;
+    margin:0;
+    color:var(--ink);
+  }
+  a{color:var(--accent);}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 0.6rem 0;
+    display:block;
+  }
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 1.5rem;}
+  .wrap-narrow{max-width:760px; margin:0 auto; padding:0 1.5rem;}
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(255,255,255,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:0.9rem; padding-bottom:0.9rem;
+  }
+  nav .brand{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    font-weight:500;
+    color:var(--ink);
+    text-decoration:none;
+  }
+  nav ul{list-style:none; display:flex; gap:1.5rem; margin:0; padding:0;}
+  nav a{color:var(--muted); text-decoration:none; font-size:0.88rem;}
+  nav a:hover, nav a:focus-visible{color:var(--accent);}
+
+  header.hero{
+    padding:4rem 0 3rem 0;
+    background-image:radial-gradient(circle, #E3E6EA 1px, transparent 1px);
+    background-size:22px 22px;
+    background-position:-10px -10px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:3rem;
+    align-items:center;
+  }
+  header.hero .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    color:var(--muted);
+    margin-bottom:1rem;
+  }
+  header.hero h1{font-size:clamp(2.1rem, 4.4vw, 2.9rem); margin-bottom:0.5rem;}
+  header.hero .role{font-size:clamp(1.02rem, 2vw, 1.2rem); color:var(--muted); margin-bottom:1.3rem;}
+  header.hero .tagline{max-width:520px; font-size:1.05rem; color:var(--ink);}
+
+  .status-pill{
+    display:inline-flex; align-items:center; gap:0.5rem;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--accent);
+    background:var(--accent-tint);
+    border:1px solid var(--line);
+    padding:0.35rem 0.75rem;
+    border-radius:999px;
+    margin-bottom:1.4rem;
+  }
+  .status-dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--accent);
+    animation:pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:0.35;}
+  }
+
+  .contact-row{
+    display:flex; flex-wrap:wrap; gap:0.4rem 1.4rem;
+    margin-top:1.6rem;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    color:var(--muted);
+  }
+  .contact-row a{color:var(--muted); text-decoration:none; border-bottom:1px solid var(--line);}
+  .contact-row a:hover, .contact-row a:focus-visible{color:var(--accent); border-color:var(--accent);}
+
+  /* dashboard mock */
+  .dash-mock{
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:0 18px 40px -22px rgba(20,32,58,0.28);
+    overflow:hidden;
+  }
+  .dash-topbar{
+    display:flex; align-items:center; gap:0.4rem;
+    padding:0.7rem 0.9rem;
+    background:var(--bg-soft);
+    border-bottom:1px solid var(--line);
+  }
+  .dash-topbar .dot{width:8px; height:8px; border-radius:50%;}
+  .dash-topbar .dot.r{background:#D89890;}
+  .dash-topbar .dot.a{background:#E3C282;}
+  .dash-topbar .dot.g{background:#7FB0A9;}
+  .dash-topbar .title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--muted);
+    margin-left:0.4rem;
+  }
+  .dash-grid{
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--line);
+  }
+  .dash-tile{
+    background:var(--bg);
+    padding:1rem 1.1rem 0.9rem 1.1rem;
+  }
+  .dash-tile .dl{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    display:block;
+    margin-bottom:0.3rem;
+  }
+  .dash-tile .dv{
+    font-family:'Newsreader', serif;
+    font-size:1.55rem;
+    display:block;
+    line-height:1;
+    margin-bottom:0.45rem;
+  }
+  .dash-tile .dt{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+  }
+  .dash-tile .dt.good{color:var(--accent);}
+  .dash-caption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--muted);
+    text-align:center;
+    padding:0.7rem 0.9rem 0.9rem 0.9rem;
+    border-top:1px solid var(--line);
+  }
+
+  section{padding:3rem 0; border-top:1px solid var(--line);}
+  section h2{font-size:1.5rem; margin-bottom:1.2rem;}
+  .profile p{max-width:640px; font-size:1.02rem;}
+
+  .stats{display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem;}
+  .stat{
+    padding:1.4rem 1.2rem;
+    background:var(--bg-soft);
+    border-radius:var(--radius);
+    border:1px solid var(--line);
+  }
+  .stat .num{font-family:'Newsreader', serif; font-size:1.7rem; color:var(--accent); display:block; margin-bottom:0.3rem;}
+  .stat .label{font-size:0.9rem; font-weight:500; margin-bottom:0.6rem;}
+  .stat .sub{font-size:0.84rem; color:var(--muted); line-height:1.45; margin-top:0.6rem;}
+  .stat .viz{height:46px; display:flex; align-items:flex-end;}
+
+  .project-card{
+    background:var(--accent-tint);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    border-radius:var(--radius);
+    padding:1.8rem 1.9rem;
+    margin-bottom:2rem;
+  }
+  .project-card h3{font-size:1.25rem; margin-bottom:0.7rem;}
+  .project-card p{margin:0; max-width:660px;}
+
+  .diagram-row{display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;}
+  .diagram-panel{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.2rem 1.2rem 1rem 1.2rem;
+    background:var(--bg);
+  }
+  .diagram-panel .dtitle{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:0.7rem;
+  }
+  .diagram-panel.before .dtitle{color:var(--risk);}
+  .diagram-panel.after .dtitle{color:var(--accent);}
+  .diagram-panel svg{width:100%; height:auto; display:block;}
+
+  .job{margin-bottom:2.2rem;}
+  .job:last-child{margin-bottom:0;}
+  .job-head{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:0.4rem; margin-bottom:0.9rem;}
+  .job-head h3{font-size:1.1rem;}
+  .job-head .dates{font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color:var(--muted); white-space:nowrap;}
+  .company-line{color:var(--muted); font-size:0.92rem; margin-bottom:1rem;}
+  ul.bullets{margin:0; padding-left:1.15rem;}
+  ul.bullets li{margin-bottom:0.6rem;}
+  ul.bullets li:last-child{margin-bottom:0;}
+
+  .skills-block{margin-bottom:1.6rem;}
+  .skills-block:last-child{margin-bottom:0;}
+  .skills-block h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--muted); font-weight:500; margin:0 0 0.7rem 0;
+  }
+  .chip-row{display:flex; flex-wrap:wrap; gap:0.55rem;}
+  .chip{
+    display:inline-flex; align-items:center; gap:0.4rem;
+    font-size:0.85rem;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:0.35rem 0.8rem;
+  }
+  .chip .cd{width:6px; height:6px; border-radius:50%; background:var(--accent);}
+
+  .edu-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:2rem;}
+  .edu-item{margin-bottom:1.3rem;}
+  .edu-item:last-child{margin-bottom:0;}
+  .edu-item .school{font-weight:600; font-size:0.98rem;}
+  .edu-item .degree{font-size:0.92rem; margin:0.15rem 0;}
+  .edu-item .when{font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--muted);}
+  .cert-list{list-style:none; margin:0; padding:0; font-size:0.92rem;}
+  .cert-list li{padding:0.35rem 0; border-bottom:1px solid var(--line);}
+  .cert-list li:last-child{border-bottom:none;}
+
+  footer{padding:3rem 0 4rem 0;}
+  .footer-grid{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:2rem;}
+  .footer-col p{margin:0.2rem 0; font-size:0.92rem; color:var(--muted);}
+  .btn{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.85rem;
+    color:var(--bg); background:var(--accent); text-decoration:none;
+    padding:0.75rem 1.3rem; border-radius:6px; border:1px solid var(--accent);
+  }
+  .btn:hover, .btn:focus-visible{background:#1d504c;}
+  .btn.secondary{background:transparent; color:var(--accent);}
+  .btn.secondary:hover, .btn.secondary:focus-visible{background:var(--accent-tint);}
+  .btn-row{display:flex; gap:0.8rem; flex-wrap:wrap;}
+
+  @media (max-width:820px){
+    .hero-grid{grid-template-columns:1fr;}
+    .dash-mock{max-width:420px;}
+    .diagram-row{grid-template-columns:1fr;}
+  }
+  @media (max-width:640px){
+    .stats{grid-template-columns:1fr;}
+    .edu-grid{grid-template-columns:1fr;}
+    nav ul{gap:1rem;}
+    nav ul li:nth-child(4), nav ul li:nth-child(5){display:none;}
+    .dash-grid{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">J. CORRALES</a>
+    <ul>
+      <li><a href="#profile">Profile</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker">San José, Costa Rica</span>
+      <h1>Jessica Corrales Loría</h1>
+      <p class="role">Business Operations Analyst, Customer Success</p>
+
+      <div class="status-pill"><span class="status-dot"></span>Open to new roles</div>
+
+      <p class="tagline">I close the gap between what Customer Success leadership needs and what the systems can actually do, then build the workflows, automations, and reporting to get there.</p>
+
+      <div class="contact-row">
+        <a href="tel:+50684327095">+506 8432-7095</a>
+        <a href="mailto:jessicorrales5251@gmail.com">jessicorrales5251@gmail.com</a>
+        <a href="https://www.linkedin.com/in/jessica-corrales-970704240/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="dash-mock" aria-hidden="true">
+      <div class="dash-topbar">
+        <span class="dot r"></span><span class="dot a"></span><span class="dot g"></span>
+        <span class="title">cs_ops_dashboard</span>
+      </div>
+      <div class="dash-grid">
+        <div class="dash-tile">
+          <span class="dl">Health Score</span>
+          <span class="dv">87</span>
+          <svg width="70" height="22" viewBox="0 0 70 22"><polyline points="2,18 14,15 26,16 38,9 50,11 62,4" fill="none" stroke="#256560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="dt good">+4 pts this quarter</span>
+        </div>
+        <div class="dash-tile">
+          <span class="dl">Time to Value</span>
+          <span class="dv">12d</span>
+          <svg width="70" height="22" viewBox="0 0 70 22"><polyline points="2,4 14,7 26,9 38,13 50,16 62,18" fill="none" stroke="#256560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="dt good">-30% since redesign</span>
+        </div>
+        <div class="dash-tile">
+          <span class="dl">SLA Compliance</span>
+          <span class="dv">98%</span>
+          <svg width="70" height="10" viewBox="0 0 70 10"><rect x="0" y="0" width="70" height="10" rx="5" fill="#E3E6EA"/><rect x="0" y="0" width="68.6" height="10" rx="5" fill="#256560"/></svg>
+          <span class="dt good">+2% month over month</span>
+        </div>
+        <div class="dash-tile">
+          <span class="dl">At Risk Accounts</span>
+          <span class="dv">3</span>
+          <svg width="70" height="22" viewBox="0 0 70 22"><rect x="2" y="4" width="10" height="18" fill="#B6544A" opacity="0.85"/><rect x="18" y="9" width="10" height="13" fill="#B6544A" opacity="0.6"/><rect x="34" y="13" width="10" height="9" fill="#B6544A" opacity="0.4"/></svg>
+          <span class="dt good">down from 8</span>
+        </div>
+      </div>
+      <div class="dash-caption">Sample CS dashboard view, the kind I build for leadership</div>
+    </div>
+  </div>
+</header>
+
+<section id="profile">
+  <div class="wrap-narrow profile">
+    <span class="eyebrow">Profile</span>
+    <p>I'm a Business Operations Analyst working inside Customer Success at a cybersecurity SaaS company. My work sits at the intersection of business need and system design: translating what CS leadership wants into scalable configurations, automations, and reporting across the customer lifecycle. I own the CS tech stack (Gainsight, Salesforce, Zendesk, Pylon), the health score and KPI frameworks the team runs on, and the dashboards that make that data usable day to day.</p>
+    <p>My degree is in Industrial Engineering from the Universidad de Costa Rica, and I'm a Lean Six Sigma Black Belt. That's where the instinct to break messy, half defined problems into logical, buildable steps comes from.</p>
+  </div>
+</section>
+
+<section id="impact">
+  <div class="wrap">
+    <span class="eyebrow">Impact</span>
+    <div class="stats">
+      <div class="stat">
+        <span class="num">30% lower</span>
+        <span class="label">time to value</span>
+        <div class="viz">
+          <svg width="100%" height="46" viewBox="0 0 90 46" preserveAspectRatio="xMidYMax meet">
+            <rect x="10" y="0" width="24" height="46" fill="#B6544A" opacity="0.75"/>
+            <rect x="56" y="14" width="24" height="32" fill="#256560"/>
+            <text x="22" y="42" font-family="IBM Plex Mono" font-size="7" fill="#ffffff" text-anchor="middle">before</text>
+            <text x="68" y="30" font-family="IBM Plex Mono" font-size="7" fill="#ffffff" text-anchor="middle">after</text>
+          </svg>
+        </div>
+        <span class="sub">Redesigned onboarding playbooks and the customer health score framework.</span>
+      </div>
+      <div class="stat">
+        <span class="num">1 migration</span>
+        <span class="label">led end to end</span>
+        <div class="viz">
+          <svg width="100%" height="46" viewBox="0 0 140 46" preserveAspectRatio="xMidYMid meet">
+            <rect x="0" y="14" width="52" height="20" rx="4" fill="none" stroke="#B6544A" stroke-width="1.5"/>
+            <text x="26" y="27" font-family="IBM Plex Mono" font-size="8" fill="#B6544A" text-anchor="middle">Gainsight</text>
+            <line x1="55" y1="24" x2="83" y2="24" stroke="#5B6472" stroke-width="1.5"/>
+            <polygon points="83,20 91,24 83,28" fill="#5B6472"/>
+            <rect x="90" y="14" width="50" height="20" rx="4" fill="#256560"/>
+            <text x="115" y="27" font-family="IBM Plex Mono" font-size="8" fill="#ffffff" text-anchor="middle">Pylon</text>
+          </svg>
+        </div>
+        <span class="sub">Gainsight to Pylon, from proof of concept through go live.</span>
+      </div>
+      <div class="stat">
+        <span class="num">Spot Award</span>
+        <span class="label">nomination</span>
+        <div class="viz">
+          <svg width="46" height="46" viewBox="0 0 46 46">
+            <polygon points="23,4 27.5,16 40,16 30,24 34,37 23,29 12,37 16,24 6,16 18.5,16" fill="#B8873E"/>
+          </svg>
+        </div>
+        <span class="sub">For cross functional leadership across CX, the vendor, and CS.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="project">
+  <div class="wrap">
+    <span class="eyebrow">Featured project</span>
+    <div class="project-card">
+      <h3>Migrating the CS platform: Gainsight to Pylon</h3>
+      <p>I led this migration end to end, from proof of concept through go live, coordinating directly with the vendor to track feature requests and resolve blockers along the way. Beyond the switch itself, I consolidated a fragmented tech stack, cut redundant tooling cost, and used the transition to bring native AI into our support operations, including standing up a Claude and MCP connector and an early agentic support bot. The project earned a Spot Award nomination for cross functional leadership across CX, the vendor, and CS.</p>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap-narrow">
+    <span class="eyebrow">Experience</span>
+    <div class="job">
+      <div class="company-line">Arkose Labs, Customer Experience Team. Bot detection and fraud prevention (cybersecurity SaaS), San José, Costa Rica.</div>
+      <div class="job-head">
+        <h3>Business Operations Analyst, Customer Success</h3>
+        <span class="dates">Dec 2024 to Present</span>
+      </div>
+      <div class="job-head">
+        <h3 style="font-size:0.98rem; color:var(--muted); font-family:'IBM Plex Sans',sans-serif; font-weight:500;">Business Operations Analyst Intern, Customer Success</h3>
+        <span class="dates">Apr 2024 to Nov 2024</span>
+      </div>
+      <ul class="bullets">
+        <li>Led the end to end migration of the CS platform from Gainsight to Pylon, coordinating with the vendor, tracking feature requests, and running UAT and enablement. Recognized with a Spot Award nomination for cross functional leadership.</li>
+        <li>Reduced time to value by about 30% by redesigning onboarding, offboarding, and renewal playbooks and the customer health score framework.</li>
+        <li>Built executive dashboards giving CS leadership real time visibility into customer lifecycle health, retention risk, and core KPIs (CSAT, NPS, SLA compliance, TTV).</li>
+        <li>Administer and optimize the CS tech stack (Gainsight, Salesforce, Zendesk, Pylon, Gong, Slack), configuring rules engines, dashboards, and workflows to keep data accurate.</li>
+        <li>Ran UAT sessions with CSMs, TAMs, and Professional Services, validating workflows and driving adoption of new features.</li>
+        <li>Managed Agile based programs, including the Subject Matter Expert Program and the Technical Enablement initiative, leading cross functional work end to end.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap-narrow">
+    <span class="eyebrow">Skills &amp; tools</span>
+
+    <div class="skills-block">
+      <h4>Tools &amp; platforms</h4>
+      <div class="chip-row">
+        <span class="chip"><span class="cd"></span>Gainsight (NXT Certified)</span>
+        <span class="chip"><span class="cd"></span>Salesforce</span>
+        <span class="chip"><span class="cd"></span>Zendesk</span>
+        <span class="chip"><span class="cd"></span>Pylon</span>
+        <span class="chip"><span class="cd"></span>Claude (AI)</span>
+        <span class="chip"><span class="cd"></span>Jira &amp; Confluence</span>
+        <span class="chip"><span class="cd"></span>Gong</span>
+        <span class="chip"><span class="cd"></span>Slack</span>
+        <span class="chip"><span class="cd"></span>Forecast Pro</span>
+      </div>
+    </div>
+
+    <div class="skills-block">
+      <h4>AI &amp; automation</h4>
+      <div class="chip-row">
+        <span class="chip"><span class="cd"></span>AI use case design</span>
+        <span class="chip"><span class="cd"></span>Workflow automation &amp; triggers</span>
+        <span class="chip"><span class="cd"></span>Claude &amp; MCP connectors</span>
+        <span class="chip"><span class="cd"></span>LLM assisted reporting</span>
+      </div>
+    </div>
+
+    <div class="skills-block">
+      <h4>Data &amp; reporting</h4>
+      <div class="chip-row">
+        <span class="chip"><span class="cd"></span>Executive dashboards</span>
+        <span class="chip"><span class="cd"></span>Health score &amp; KPI ownership</span>
+        <span class="chip"><span class="cd"></span>Churn &amp; contraction risk modeling</span>
+        <span class="chip"><span class="cd"></span>Looker</span>
+        <span class="chip"><span class="cd"></span>Explore Analytics</span>
+        <span class="chip"><span class="cd"></span>Python</span>
+        <span class="chip"><span class="cd"></span>Basic SQL</span>
+      </div>
+    </div>
+
+    <div class="skills-block">
+      <h4>Process &amp; enablement</h4>
+      <div class="chip-row">
+        <span class="chip"><span class="cd"></span>Lean Six Sigma (DMAIC)</span>
+        <span class="chip"><span class="cd"></span>Playbook design</span>
+        <span class="chip"><span class="cd"></span>Process standardization</span>
+        <span class="chip"><span class="cd"></span>UAT</span>
+        <span class="chip"><span class="cd"></span>Platform migration</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap-narrow">
+    <span class="eyebrow">Education &amp; certifications</span>
+    <div class="edu-grid">
+      <div>
+        <div class="edu-item">
+          <div class="school">Universidad de Costa Rica</div>
+          <div class="degree">Bachelor's Degree in Industrial Engineering</div>
+          <div class="when">2019 to 2024, highest GPA in class of 2020</div>
+        </div>
+        <div class="edu-item">
+          <div class="school">Universidad Politécnica de Madrid</div>
+          <div class="degree">Exchange program, Escuela Técnica de Ingeniería y Diseño Industrial</div>
+          <div class="when">2022</div>
+        </div>
+      </div>
+      <ul class="cert-list">
+        <li>CompTIA Security+ Certification, 2026</li>
+        <li>Gainsight NXT Associate Administrator, 2025</li>
+        <li>Lean Six Sigma Black Belt, 2024</li>
+        <li>Zendesk Explore Analytics, 2024</li>
+        <li>Zendesk Foundational Support, 2024</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap footer-grid">
+    <div class="footer-col">
+      <span class="eyebrow">Get in touch</span>
+      <p>jessicorrales5251@gmail.com</p>
+      <p>+506 8432-7095</p>
+      <p>San José, Costa Rica</p>
+      <p>Languages: Spanish (native), English (advanced), French (basic)</p>
+    </div>
+    <div class="footer-col">
+      <span class="eyebrow">Links</span>
+      <div class="btn-row">
+        <a class="btn" href="./Jessica_Corrales_CV.pdf" target="_blank" rel="noopener">Download CV</a>
+        <a class="btn secondary" href="https://www.linkedin.com/in/jessica-corrales-970704240/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
